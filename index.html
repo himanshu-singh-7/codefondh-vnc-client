@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codefondh VNC - Web VNC Client</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖥️</text></svg>">
+</head>
+<body>
+    <!-- A-ADS Advertisement Header -->
+    <div style="position: absolute; z-index: 99999">
+      <input autocomplete="off" type="checkbox" id="aadsstickymh5y5ptn" hidden />
+      <div style="padding-top: auto; padding-bottom: 0;">
+        <div style="width:100%;height:auto;position:fixed;text-align:center;font-size:0;top:0;left:0;right:0;margin:auto">
+          <label for="aadsstickymh5y5ptn" style="top: 50%;transform: translateY(-50%);right:24px;; position: absolute;border-radius: 4px; background: rgba(248, 248, 249, 0.70); padding: 4px;z-index: 99999;cursor:pointer">
+            <svg fill="#000000" height="16px" width="16px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490">
+              <polygon points="456.851,0 245,212.564 33.149,0 0.708,32.337 212.669,245.004 0.708,457.678 33.149,490 245,277.443 456.851,490 489.292,457.678 277.331,245.004 489.292,32.337 "/>
+            </svg>
+          </label>
+          <div id="frame" style="width: 100%;margin: auto;position: relative; z-index: 99998;">
+                      <iframe data-aa=2414861 src=//acceptable.a-ads.com/2414861/?size=Adaptive style='border:0; padding:0; width:70%; height:auto; overflow:hidden; margin: auto'></iframe>
+                      <div style="width: 70%;margin:auto;text-align: left;position: absolute;left: 0;right: 0">
+                        <a style="display:inline-block;font-size: 13px;color: #263238;padding: 4px 10px;background: #F8F8F9;text-decoration: none; border-radius: 0 0 4px 4px;"
+                          id="frame-link"
+                          target="_blank"
+                          href="https://aads.com/campaigns/new?source_id=2414861&source_type=ad_unit&partner=2414861">
+                          Advertise here
+                        </a>
+                      </div>
+                  </div>
+        </div>
+        <style>
+      #aadsstickymh5y5ptn:checked + div {
+        display: none;
+      }
+    </style>
+    </div></div>
+
+    <!-- Main Container -->
+    <div id="app" style="margin-top: 80px;">
+        <!-- Control Bar -->
+        <div id="control-bar" class="control-bar">
+            <div class="control-bar-left">
+                <div class="logo">
+                    <span class="logo-icon">🖥️</span>
+                    <span class="logo-text">Codefondh VNC</span>
+                </div>
+                <div class="status-indicator" id="status-indicator">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Disconnected</span>
+                </div>
+            </div>
+            
+            <div class="control-bar-right">
+                <button class="control-btn" id="btn-settings" title="Settings">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97 0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1 0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66z"/>
+                    </svg>
+                </button>
+                <button class="control-btn" id="btn-fullscreen" title="Fullscreen">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                    </svg>
+                </button>
+                <button class="control-btn" id="btn-disconnect" title="Disconnect" style="display:none;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42A6.92 6.92 0 0 1 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-1.96.81-3.73 2.1-5.01l-1.42-1.42A8.962 8.962 0 0 0 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9a8.996 8.996 0 0 0-2.17-5.83z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Connection Panel -->
+        <div id="connection-panel" class="connection-panel">
+            <div class="connection-content">
+                <div class="connection-header">
+                    <h1>Connect to VNC Server</h1>
+                    <p>Enter your VNC server details below to establish connection</p>
+                </div>
+
+                <div class="alert" id="alert" style="display:none;">
+                    <span id="alert-text"></span>
+                </div>
+
+                <div class="form-container">
+                    <div class="form-group">
+                        <label for="host">Server Address</label>
+                        <input type="text" id="host" placeholder="e.g., 192.168.1.100 or example.com" autocomplete="off">
+                        <small>Enter the IP address or hostname of your VNC server</small>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="port">Port</label>
+                            <input type="number" id="port" value="6080" min="1" max="65535">
+                            <small>WebSocket port (usually 6080)</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" placeholder="VNC password" autocomplete="off">
+                            <small>Leave blank if no password</small>
+                        </div>
+                    </div>
+
+                    <div class="advanced-settings" id="advanced-settings" style="display:none;">
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="encrypt">
+                                Use encrypted connection (WSS)
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="resize" checked>
+                                Resize remote session
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="view-only">
+                                View only (no keyboard/mouse)
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="toggle-advanced" id="toggle-advanced">
+                        <span>Advanced Settings</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </button>
+
+                    <button class="btn-connect" id="btn-connect">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        Connect
+                    </button>
+                </div>
+
+                <div class="quick-connect">
+                    <h3>Quick Connect</h3>
+                    <div class="quick-connect-grid">
+                        <button class="quick-btn" onclick="quickConnect('localhost', 6080)">
+                            <div class="quick-icon">💻</div>
+                            <div class="quick-label">Localhost</div>
+                        </button>
+                        <button class="quick-btn" onclick="quickConnect('127.0.0.1', 5901)">
+                            <div class="quick-icon">🔒</div>
+                            <div class="quick-label">Direct VNC</div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <h3>📖 Quick Guide</h3>
+                    <ol>
+                        <li>Make sure your VNC server is running with websockify</li>
+                        <li>Enter the server address and port (default: 6080)</li>
+                        <li>Enter your VNC password</li>
+                        <li>Click "Connect" to start the session</li>
+                    </ol>
+                    <p class="help-note">
+                        <strong>Need a VNC server?</strong> Check out 
+                        <a href="https://github.com/codefondh/codespace-gui" target="_blank">Codefondh VNC Server</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VNC Screen Container -->
+        <div id="screen-container" class="screen-container" style="display:none;">
+            <div id="screen" class="screen"></div>
+            <div class="loading-overlay" id="loading-overlay">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">Connecting to VNC server...</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Powered by <strong>Codefondh VNC</strong> | Open Source Web VNC Client</p>
+            <p><a href="https://github.com/codefondh" target="_blank">GitHub</a> • 
+               <a href="https://github.com/codefondh/vnc-client" target="_blank">Documentation</a></p>
+        </div>
+    </div>
+
+    <!-- Load noVNC from CDN -->
+    <script type="module" crossorigin="anonymous">
+        import RFB from 'https://cdn.jsdelivr.net/npm/@novnc/novnc@1.4.0/core/rfb.js';
+        window.RFB = RFB;
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
